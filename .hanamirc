@@ -1,0 +1,3 @@
+project=pen_spectrum_database
+test=rspec
+template=slim
