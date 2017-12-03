@@ -1,5 +1,6 @@
 require "hanami/helpers"
 require "hanami/assets"
+require_relative "./controllers/authentication"
 
 module Web
   class Application < Hanami::Application
@@ -81,7 +82,22 @@ module Web
       #
       # See: http://www.rubydoc.info/gems/rack/Rack/Session/Cookie
       #
-      # sessions :cookie, secret: ENV['WEB_SESSIONS_SECRET']
+      sessions :cookie, secret: ENV["WEB_SESSIONS_SECRET"]
+
+      # Configure Auth0
+      middleware.use OmniAuth::Builder do
+        provider(
+          :auth0,
+          ENV["AUTH0_CLIENT_ID"],
+          ENV["AUTH0_CLIENT_SECRET"],
+          ENV["AUTH0_DOMAIN"],
+          callback_path: "/auth/oauth2/callback",
+          authorize_params: {
+            scope: "openid profile",
+            audience: "#{ENV["AUTH0_DOMAIN_URL"]}/userinfo",
+          },
+        )
+      end
 
       # Configure Rack middleware for this application
       #
@@ -259,8 +275,7 @@ module Web
       #
       # See: http://www.rubydoc.info/gems/hanami-controller#Configuration
       controller.prepare do
-        # include MyAuthentication # included in all the actions
-        # before :authenticate!    # run an authentication before callback
+        include Authentication
       end
 
       # Configure the code that will yield each time Web::View is included

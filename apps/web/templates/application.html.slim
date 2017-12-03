@@ -1,8 +1,31 @@
 doctype html
 html
   head
+    link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"
+    script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
     title
-      | Web
+      | Pen Spectrum Database
     = favicon
+
+  - if current_user
+    nav class="navbar navbar-inverse navbar-static-top"
+      div class="container-fluid"
+        div class="navbar-header"
+          a class="navbar-brand" href="#" PenSpectrumDatabase
+        ul class="nav navbar-nav"
+          li
+            a href="/" Home
+          li
+            a href="/users" Users
+          li
+            a href="/measurments" Measurments
+          li
+            a href="/pens" Pens
+          li
+            a href="/devices" Devices
+        ul class="nav navbar-nav navbar-right"
+          li
+            a href="/logout" Logout
   body
     = yield

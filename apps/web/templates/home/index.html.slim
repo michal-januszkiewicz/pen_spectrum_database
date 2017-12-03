@@ -1,0 +1,11 @@
+section class="jumbotron text-center"
+  h2
+    img class="jumbo-thumbnail" src="https://cdn.auth0.com/styleguide/1.0.0/img/badge.svg"
+  h1
+    RoR Pen Spectrum Database
+  - if @current_user
+    a class="btn btn-success btn-lg" href="/logout"
+      | Logout
+  - else
+    a class="btn btn-success btn-lg" href="/auth/auth0"
+      | Login

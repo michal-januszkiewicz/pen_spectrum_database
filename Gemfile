@@ -8,6 +8,9 @@ gem "pg"
 
 gem "slim"
 
+gem "omniauth"
+gem "omniauth-auth0"
+
 group :development do
   # Code reloading
   # See: http://hanamirb.org/guides/projects/code-reloading
