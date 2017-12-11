@@ -1,0 +1,13 @@
+h2 All Devices
+- if measurment_devices.any?
+  #measurment_devices
+    - measurment_devices.each do |device|
+      .device
+        h2= device.name
+        = link_to("Edit", routes.edit_measurment_device_path(device.id))
+        = destroy_device_form(device.id)
+  end
+- else
+  p.placeholder There are no measurment_devices yet.
+
+a href="/measurment_devices/new" Add new

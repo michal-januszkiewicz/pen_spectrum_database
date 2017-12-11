@@ -3,3 +3,5 @@ get "/auth/failure", to: "auth0#failure"
 get "/logout", to: "auth0#logout"
 
 root to: "home#index"
+
+resources :measurment_devices

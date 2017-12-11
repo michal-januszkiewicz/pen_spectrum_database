@@ -5,14 +5,14 @@ Hanami::Model.migration do
     create_table :users do
       column :id, :uuid, default: Sequel.function(:uuid_generate_v4), primary_key: true
       column :name, String, null: false
-      column :email, String, null: false
+      column :email, String, null: false, unique: true
       column :created_at, DateTime, null: false, default: Time.now
       column :updated_at, DateTime, null: false, default: Time.now
     end
 
     create_table :pens do
       column :id, :uuid, default: Sequel.function(:uuid_generate_v4), primary_key: true
-      column :name, String, null: false
+      column :name, String, null: false, unique: true
       column :color, String, null: false
       column :created_at, DateTime, null: false, default: Time.now
       column :updated_at, DateTime, null: false, default: Time.now
@@ -20,7 +20,7 @@ Hanami::Model.migration do
 
     create_table :measurment_devices do
       column :id, :uuid, default: Sequel.function(:uuid_generate_v4), primary_key: true
-      column :name, String, null: false
+      column :name, String, null: false, unique: true
       column :created_at, DateTime, null: false, default: Time.now
       column :updated_at, DateTime, null: false, default: Time.now
     end
@@ -30,7 +30,7 @@ Hanami::Model.migration do
       column :name, String, null: false
       column :date, DateTime
       column :params, :json
-      column :spectrum, 'Text[]'
+      column :spectrum, 'Text[]', null: false
       column :comments, String
       column :created_at, DateTime, null: false, default: Time.now
       column :updated_at, DateTime, null: false, default: Time.now
@@ -43,7 +43,7 @@ Hanami::Model.migration do
 
   down do
     run 'DROP EXTENSION IF EXISTS "uuid-ossp" CASCADE'
-    
+
     drop_table :measurments
     drop_table :pens
     drop_table :users
