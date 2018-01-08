@@ -8,14 +8,19 @@ Hanami::Model.migration do
       column :email, String, null: false, unique: true
       column :created_at, DateTime, null: false, default: Time.now
       column :updated_at, DateTime, null: false, default: Time.now
+
+      index :name, unique: true
     end
 
     create_table :pens do
       column :id, :uuid, default: Sequel.function(:uuid_generate_v4), primary_key: true
       column :name, String, null: false, unique: true
-      column :color, String, null: false
+      column :color, String
+      column :comments, String
       column :created_at, DateTime, null: false, default: Time.now
       column :updated_at, DateTime, null: false, default: Time.now
+
+      index :name, unique: true
     end
 
     create_table :measurment_devices do
@@ -23,21 +28,26 @@ Hanami::Model.migration do
       column :name, String, null: false, unique: true
       column :created_at, DateTime, null: false, default: Time.now
       column :updated_at, DateTime, null: false, default: Time.now
+
+      index :name, unique: true
     end
 
     create_table :measurments do
       column :id, :uuid, default: Sequel.function(:uuid_generate_v4), primary_key: true
-      column :name, String, null: false
+      column :name, String
+      column :type, String
       column :date, DateTime
-      column :params, :json
+      column :params, String
       column :spectrum, 'Text[]', null: false
       column :comments, String
       column :created_at, DateTime, null: false, default: Time.now
       column :updated_at, DateTime, null: false, default: Time.now
 
       foreign_key :user_id, :users, type: :uuid, on_delete: :set_null
-      foreign_key :measurment_device_id, :measurment_devices, type: :uuid, on_delete: :set_null
-      foreign_key :pen_id, :pens, type: :uuid, on_delete: :set_null
+      foreign_key :measurment_device_id, :measurment_devices, type: :uuid, on_delete: :set_null#, null: false
+      foreign_key :pen_id, :pens, type: :uuid, on_delete: :set_null, null: false
+
+      index [:pen_id, :type], unique: true
     end
   end
 

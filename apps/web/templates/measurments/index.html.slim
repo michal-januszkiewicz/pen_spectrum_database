@@ -1,0 +1,16 @@
+h2 All Measurments
+- if measurments.any?
+  #measurments
+    - measurments.each do |measurment|
+      .measurment
+        h3
+          = "#{measurment.pen.name} (#{measurment.type})"
+        = link_to("Edit", routes.edit_measurment_path(measurment.id))
+        = destroy_measurment_form(measurment.id)
+  end
+- else
+  p.placeholder There are no measurments yet.
+
+a href="/measurments/new" Add new
+br
+a href="/measurments/import_form" Import from file

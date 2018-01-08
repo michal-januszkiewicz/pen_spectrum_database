@@ -1,5 +1,8 @@
 source "https://rubygems.org"
 
+ruby "2.4.1"
+
+gem "activesupport"
 gem "hanami", "~> 1.1"
 gem "hanami-model", "~> 1.1"
 gem "rake"
@@ -29,5 +32,5 @@ group :test do
 end
 
 group :production do
-  # gem 'puma'
+  gem "puma"
 end
