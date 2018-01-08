@@ -1,4 +1,4 @@
-require "hanami/helpers"
+  require "hanami/helpers"
 require "hanami/assets"
 require_relative "./controllers/authentication"
 
@@ -254,11 +254,14 @@ module Web
         frame-ancestors 'self';
         base-uri 'self';
         default-src 'none';
-        script-src 'self';
+        script-src 'self' \
+          https://ajax.googleapis.com \
+          https://maxcdn.bootstrapcdn.com;
         connect-src 'self';
         img-src 'self' https: data:;
         style-src 'self' 'unsafe-inline' https:;
-        font-src 'self';
+        font-src 'self' \
+        https://maxcdn.bootstrapcdn.com;
         object-src 'none';
         plugin-types application/pdf;
         child-src 'self';
