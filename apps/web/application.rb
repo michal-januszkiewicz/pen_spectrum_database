@@ -1,4 +1,4 @@
-  require "hanami/helpers"
+require "hanami/helpers"
 require "hanami/assets"
 require_relative "./controllers/authentication"
 
@@ -254,9 +254,12 @@ module Web
         frame-ancestors 'self';
         base-uri 'self';
         default-src 'none';
-        script-src 'self' \
+        script-src 'self' 'unsafe-inline' \
           https://ajax.googleapis.com \
-          https://maxcdn.bootstrapcdn.com;
+          https://maxcdn.bootstrapcdn.com \
+          https://cdnjs.cloudflare.com \
+          https://code.highcharts.com/highcharts.js \
+          https://www.gstatic.com;
         connect-src 'self';
         img-src 'self' https: data:;
         style-src 'self' 'unsafe-inline' https:;

@@ -1,6 +1,11 @@
 module Web::Views::Measurments
   class Index
     include Web::View
+    include Chartkick::Helper
+
+    def spectrum_chart(spectrum)
+      raw line_chart(spectrum)
+    end
 
     def destroy_measurment_form(id)
       form_for :measurments, routes.measurment_path(id), method: :delete do
