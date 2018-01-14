@@ -5,13 +5,15 @@ h2 All Measurments
       .measurment
         h3
           = "#{measurment.pen.name} (#{measurment.type})"
-        = spectrum_chart({6 => 4, 4 => 5, 7 => 4})
+        = link_to("Show", routes.measurment_path(measurment.id))
+        |  |
         = link_to("Edit", routes.edit_measurment_path(measurment.id))
         = destroy_measurment_form(measurment.id)
   end
 - else
   p.placeholder There are no measurments yet.
 
+br
 a href="/measurments/new" Add new
 br
 a href="/measurments/import_form" Import from file

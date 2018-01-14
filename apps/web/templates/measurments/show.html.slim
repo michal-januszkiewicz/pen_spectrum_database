@@ -1,0 +1,6 @@
+h2
+  = "#{measurment.pen.name} (#{measurment.type})"
+.measurment
+  = spectrum_chart(measurment.spectrum)
+  = link_to("Edit", routes.edit_measurment_path(measurment.id))
+  = destroy_measurment_form(measurment.id)

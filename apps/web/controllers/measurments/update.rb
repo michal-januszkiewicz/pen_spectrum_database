@@ -1,8 +1,9 @@
 module Web::Controllers::Measurments
-  class Create
+  class Update
     include Web::Action
 
     params do
+      required(:id).filled
       required(:measurment).schema do
         required(:name).maybe(size?: 2..100)
         required(:type).maybe(size?: 2..100)
@@ -13,7 +14,7 @@ module Web::Controllers::Measurments
     end
 
     def call(params)
-      MeasurmentRepository.new.create(measurment_params) if params.valid?
+      MeasurmentRepository.new.update(params[:id], measurment_params)
       redirect_to "/measurments"
     end
 
