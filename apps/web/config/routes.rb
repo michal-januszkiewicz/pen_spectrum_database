@@ -5,6 +5,7 @@ get "/logout", to: "auth0#logout"
 root to: "home#index"
 
 resources :measurment_devices
+resources :pens
 resources :measurments do
   collection do
     get "import_form", to: "measurments#import_form"

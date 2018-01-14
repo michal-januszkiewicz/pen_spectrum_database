@@ -11,6 +11,7 @@ module Services
       @file = tempfile
       @filename = filename
       @separator = separator
+      @pen_name = ""
       extract_data_from_filename
     end
 
