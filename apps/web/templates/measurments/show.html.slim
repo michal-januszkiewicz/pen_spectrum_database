@@ -1,5 +1,11 @@
-h2
-  = "#{measurment.pen.name} (#{measurment.type})"
+= "Pen: #{measurment.pen.name}"
+br
+= "Device: #{measurment.measurment_device}"
+br
+= "Type: #{measurment.type}"
+br
+= "Comments: #{measurment.comments}"
+
 .measurment
   = spectrum_chart(measurment.spectrum)
   = link_to("Edit", routes.edit_measurment_path(measurment.id))

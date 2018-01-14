@@ -1,6 +1,7 @@
 module Web::Views::Measurments
   class Edit
     include Web::View
+    include FormHelper
 
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/MethodLength
@@ -29,6 +30,11 @@ module Web::Views::Measurments
         end
 
         div class: "input" do
+          label       :device
+          select      :measurment_device_id, devices
+        end
+
+        div class: "input" do
           label      :spectrum
           text_area  :spectrum
         end
@@ -45,12 +51,6 @@ module Web::Views::Measurments
 
     def measurment(id)
       MeasurmentRepository.new.find_by_id(id: id)
-    end
-
-    def pens
-      PenRepository.new.all.each_with_object({}) do |pen, hash|
-        hash[pen.name] = pen.id
-      end
     end
   end
 end

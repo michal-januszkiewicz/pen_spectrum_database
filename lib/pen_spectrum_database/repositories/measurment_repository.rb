@@ -16,8 +16,8 @@ class MeasurmentRepository < Hanami::Repository
       .one
   end
 
-  def one_with_pen(id:)
-    aggregate(:pen)
+  def one_with_pen_and_device(id:)
+    aggregate(:pen, :measurment_device)
       .where(id: id)
       .one
   end
