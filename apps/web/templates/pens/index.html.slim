@@ -1,15 +1,34 @@
-h2 All Pens
+h2 List of all pens
+br
 - if pens.any?
   #pens
+    .row
+      h4.col-md-3
+        b= "Name"
+      h4.col-md-1
+        b= "Color"
+      h4.col-md-5
+        b= "Comments"
+      h4.col-md-2
+        b= "Actions"
+    br
     - pens.each do |pen|
       .pen
-        h2= pen.name
-        = link_to("Show", routes.pen_path(pen.id))
-        |  | 
-        = link_to("Edit", routes.edit_pen_path(pen.id))
-        = destroy_pen_form(pen.id)
+        .row
+          p.col-md-3
+            = pen.name
+          p.col-md-1
+            = pen.color
+          p.col-md-5
+            = pen.comments
+          .col-md-2.btn-group
+              = link_to("Show", routes.pen_path(pen.id), class: "btn btn-success btn")
+              = link_to("Edit", routes.edit_pen_path(pen.id), class: "btn btn-success btn")
+          .col-md-1
+            = destroy_pen_form(pen.id)
+        br
   end
 - else
   p.placeholder There are no pens yet.
 
-a href="/pens/new" Add new
+a href="/pens/new" class="btn btn-success btn" Add new

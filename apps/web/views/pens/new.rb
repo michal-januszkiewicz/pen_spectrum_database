@@ -5,23 +5,23 @@ module Web::Views::Pens
     # rubocop:disable Metrics/MethodLength
     def pen_form
       form_for :pen, "/pens" do
-        div class: "input" do
+        div class: "form-group" do
           label      :name
-          text_field :name
+          text_field :name, class: "form-control"
         end
 
-        div class: "input" do
+        div class: "form-group" do
           label      :color
-          text_field :color
+          text_field :color, class: "form-control"
         end
 
-        div class: "input" do
+        div class: "form-group" do
           label      :comments
-          text_area :comments
+          text_area :comments, class: "form-control"
         end
 
         div class: "controls" do
-          submit "Create pen"
+          submit "Create pen", class: "btn-success btn-primary btn"
         end
       end
     end

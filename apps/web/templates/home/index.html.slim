@@ -3,7 +3,6 @@ section class="jumbotron text-center"
     img class="jumbo-thumbnail" src="assets/logo.gif"
   h1
     RoR Pen Spectrum Database
-  - if current_user
-  - else
+  - unless current_user
     a class="btn btn-success btn-lg" href="/auth/auth0"
       | Login

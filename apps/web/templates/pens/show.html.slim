@@ -1,10 +1,21 @@
 .pen
-  h2= "#{pen.name}"
+  .row
+    .col-md-2
+      h2= "#{pen.name}"
+  .row
+    br
+    .col-md-2
+      = "Color:"
+    .col-md-10
+      = pen.color
+    br
+    .col-md-2
+      = "Comments:"
+    .col-md-10
+      = pen.comments
   br
-  = "Color: #{pen.color}"
-  br
-  = "Comments: #{pen.comments}"
-  br
-
-  = link_to("Edit", routes.edit_pen_path(pen.id))
-  = destroy_pen_form(pen.id)
+  .row
+    .col-md-4
+      = link_to("Edit", routes.edit_pen_path(pen.id), class: "btn-success btn-primary btn")
+    .col-md-4
+      = destroy_pen_form(pen.id)
