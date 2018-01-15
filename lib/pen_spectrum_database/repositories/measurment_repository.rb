@@ -22,7 +22,28 @@ class MeasurmentRepository < Hanami::Repository
       .one
   end
 
-  def all_with_pens
-    aggregate(:pen).to_a
+  # rubocop:disable Security/Eval
+  def all_with_pens_and_devices(pen_id: nil, device_id: nil)
+    query = "aggregate(:pen, :measurment_device)"
+    query << by_device(device_id)
+    query << by_pen(pen_id)
+    query << ".to_a"
+    eval(query)
+  end
+  # rubocop:enable Security/Eval
+
+  def query_builder
+    query = ""
+    query
+  end
+
+  def by_device(device_id)
+    return "" unless device_id
+    ".where(measurment_device_id: device_id)"
+  end
+
+  def by_pen(pen_id)
+    return "" unless pen_id
+    ".where(pen_id: pen_id)"
   end
 end

@@ -1,17 +1,22 @@
 h2 All Measurments
-- if measurments.any?
-  #measurments
-    - measurments.each do |measurment|
-      .measurment
-        h3
-          = "#{measurment.pen.name} (#{measurment.type})"
-        = link_to("Show", routes.measurment_path(measurment.id))
-        |  |
-        = link_to("Edit", routes.edit_measurment_path(measurment.id))
-        = destroy_measurment_form(measurment.id)
-  end
-- else
-  p.placeholder There are no measurments yet.
+br
+= filters
+#measurments
+  - measurments.each do |measurment|
+    .measurment
+      h3
+        = "#{measurment.name}"
+      =  "Pen: #{measurment.pen&.name}"
+      br
+      =  "Device: #{measurment.measurment_device&.name}"
+      br
+      =  "Type: #{measurment.type}"
+      br
+      = link_to("Show", routes.measurment_path(measurment.id))
+      |  |
+      = link_to("Edit", routes.edit_measurment_path(measurment.id))
+      = destroy_measurment_form(measurment.id)
+end
 
 br
 a href="/measurments/new" Add new
