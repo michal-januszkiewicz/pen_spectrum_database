@@ -1,13 +1,24 @@
-h2 All Devices
+h2 List of all measurment devices
+br
 - if measurment_devices.any?
+  .row
+    h4.col-md-4
+      b= "Name"
+    h4.col-md-2
+      b= "Actions"
+  br
   #measurment_devices
     - measurment_devices.each do |device|
       .device
-        h2= device.name
-        = link_to("Edit", routes.edit_measurment_device_path(device.id))
-        = destroy_device_form(device.id)
+        .row
+          p.col-md-4
+            = device.name
+          p.col-md-1
+            = link_to("Edit", routes.edit_measurment_device_path(device.id), class: "btn btn-success")
+          p.col-md-1
+            = destroy_device_form(device.id)
   end
 - else
   p.placeholder There are no measurment_devices yet.
 
-a href="/measurment_devices/new" Add new
+a href="/measurment_devices/new" class="btn-success btn" Add new

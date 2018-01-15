@@ -6,13 +6,13 @@ module Web::Views::MeasurmentDevices
       form_for :measurment_device, routes.measurment_device_path(id),
                method: :patch, values: { measurment_device: measurment_device(id) } do
 
-        div class: "input" do
+        div class: "form-group" do
           label      :name
-          text_field :name
+          text_field :name, class: "form-control"
         end
 
         div class: "controls" do
-          submit "Update"
+          submit "Update", class: "btn-success btn-primary btn"
         end
       end
     end
