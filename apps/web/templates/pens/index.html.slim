@@ -4,6 +4,8 @@ h2 All Pens
     - pens.each do |pen|
       .pen
         h2= pen.name
+        = link_to("Show", routes.pen_path(pen.id))
+        |  | 
         = link_to("Edit", routes.edit_pen_path(pen.id))
         = destroy_pen_form(pen.id)
   end

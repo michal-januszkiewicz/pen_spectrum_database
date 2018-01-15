@@ -1,12 +1,11 @@
-= "Pen: #{measurment.pen.name}"
-br
-= "Device: #{measurment.measurment_device}"
-br
-= "Type: #{measurment.type}"
-br
-= "Comments: #{measurment.comments}"
-
 .measurment
+  = "Pen: #{measurment.pen.name}"
+  br
+  = "Device: #{measurment.measurment_device}"
+  br
+  = "Type: #{measurment.type}"
+  br
+  = "Comments: #{measurment.comments}"
   = spectrum_chart(measurment.spectrum)
   = link_to("Edit", routes.edit_measurment_path(measurment.id))
   = destroy_measurment_form(measurment.id)

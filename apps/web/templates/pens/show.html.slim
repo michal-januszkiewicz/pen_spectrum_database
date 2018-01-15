@@ -1,0 +1,10 @@
+.pen
+  h2= "#{pen.name}"
+  br
+  = "Color: #{pen.color}"
+  br
+  = "Comments: #{pen.comments}"
+  br
+
+  = link_to("Edit", routes.edit_pen_path(pen.id))
+  = destroy_pen_form(pen.id)
