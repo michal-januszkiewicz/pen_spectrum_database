@@ -1,11 +1,36 @@
 .measurment
-  = "Pen: #{measurment.pen.name}"
-  br
-  = "Device: #{measurment.measurment_device}"
-  br
-  = "Type: #{measurment.type}"
-  br
-  = "Comments: #{measurment.comments}"
+  h2
+    = measurment.name
+  .row
+    p.col-md-2
+      = "Pen:"
+    p.col-md-2
+      = measurment.pen&.name
+  .row
+    p.col-md-2
+      = "Device:"
+    p.col-md-2
+      = measurment.measurment_device
+  .row
+    p.col-md-2
+      = "Type:"
+    p.col-md-2
+      = measurment.type
+  .row
+    p.col-md-2
+      = "Comments:"
+    p.col-md-2
+      = measurment.comments
+  .row
+    p.col-md-2
+      = "Date:"
+    p.col-md-2
+      = measurment.date
+
   = spectrum_chart(measurment.spectrum)
-  = link_to("Edit", routes.edit_measurment_path(measurment.id))
-  = destroy_measurment_form(measurment.id)
+
+  .row
+    p.col-md-11
+      = link_to("Edit", routes.edit_measurment_path(measurment.id), class: "btn btn-success")
+    p.col-md-1
+      = destroy_measurment_form(measurment.id)

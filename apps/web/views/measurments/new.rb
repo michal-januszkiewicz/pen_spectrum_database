@@ -7,38 +7,38 @@ module Web::Views::Measurments
     # rubocop:disable Metrics/MethodLength
     def measurment_form
       form_for :measurment, "/measurments" do
-        div class: "input" do
+        div class: "form-group" do
           label      :name
-          text_field :name
+          text_field :name, class: "form-control"
         end
 
-        div class: "input" do
+        div class: "form-group" do
           label      :type
-          text_field :type
+          text_field :type, class: "form-control"
         end
 
-        div class: "input" do
+        div class: "form-group" do
           label       :comments
-          text_field  :comments
+          text_field  :comments, class: "form-control"
         end
 
-        div class: "input" do
+        div class: "form-group" do
           label       :pen
-          select      :pen_id, pens
+          select      :pen_id, pens, class: "form-control"
         end
 
-        div class: "input" do
+        div class: "form-group" do
           label       :device
-          select      :measurment_device_id, devices
+          select      :measurment_device_id, devices, class: "form-control"
         end
 
-        div class: "input" do
+        div class: "form-group" do
           label      :spectrum
-          text_area  :spectrum
+          text_area  :spectrum, class: "form-control", rows: 15, style: "max-width: 20%"
         end
 
         div class: "controls" do
-          submit "Create measurment"
+          submit "Create measurment", class: "btn-success btn"
         end
       end
     end

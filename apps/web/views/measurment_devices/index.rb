@@ -5,7 +5,7 @@ module Web::Views::MeasurmentDevices
     def destroy_device_form(id)
       form_for :measurment_device, routes.measurment_device_path(id), method: :delete do
         div class: "controls" do
-          submit "Delete", class: "btn-primary btn-success btn"
+          submit "Delete", class: "btn-danger btn"
         end
       end
     end

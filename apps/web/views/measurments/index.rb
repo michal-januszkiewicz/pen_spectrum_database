@@ -5,19 +5,19 @@ module Web::Views::Measurments
     include Chartkick::Helper
 
     def filters
-      form_for :measurment, routes.measurments_path, method: :get do
-        div class: "input" do
+      form_for :measurment, routes.measurments_path, class: "form-inline", method: :get do
+        div class: "form-group" do
           label       :pen
-          select      :pen_id, pens
+          select      :pen_id, pens, class: "form-control"
         end
 
-        div class: "input" do
+        div class: "form-group" do
           label       :device
-          select      :device_id, devices
+          select      :device_id, devices, class: "form-control"
         end
 
-        div class: "controls" do
-          submit "Filter"
+        div class: "form-group" do
+          submit "Filter", class: "btn btn-success"
         end
       end
     end

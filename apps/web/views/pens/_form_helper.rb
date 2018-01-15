@@ -3,7 +3,7 @@ module Web::Views::Pens
     def destroy_pen_form(id)
       form_for :pens, routes.pen_path(id), method: :delete do
         div class: "controls" do
-          submit "Delete", class: "btn btn-success btn-md"
+          submit "Delete", class: "btn btn-danger"
         end
       end
     end

@@ -9,38 +9,38 @@ module Web::Views::Measurments
       form_for :measurment, routes.measurment_path(id),
                method: :patch, values: { measurment: measurment(id) } do
 
-        div class: "input" do
+        div class: "form-group" do
           label      :name
-          text_field :name, value: measurment(id).name
+          text_field :name, value: measurment(id).name, class: "form-control"
         end
 
-        div class: "input" do
+        div class: "form-group" do
           label      :type
-          text_field :type
+          text_field :type, class: "form-control"
         end
 
-        div class: "input" do
+        div class: "form-group" do
           label       :comments
-          text_field  :comments
+          text_field  :comments, class: "form-control"
         end
 
-        div class: "input" do
+        div class: "form-group" do
           label       :pen
-          select      :pen_id, pens
+          select      :pen_id, pens, class: "form-control"
         end
 
-        div class: "input" do
+        div class: "form-group" do
           label       :device
-          select      :measurment_device_id, devices
+          select      :measurment_device_id, devices, class: "form-control"
         end
 
-        div class: "input" do
+        div class: "form-group" do
           label      :spectrum
-          text_area  :spectrum
+          text_area  :spectrum, class: "form-control", rows: 15, style: "max-width: 20%"
         end
 
         div class: "controls" do
-          submit "Update measurment"
+          submit "Update measurment", class: "btn btn-success"
         end
       end
     end

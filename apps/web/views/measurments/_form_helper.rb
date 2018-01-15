@@ -15,7 +15,7 @@ module Web::Views::Measurments
     def destroy_measurment_form(id)
       form_for :measurments, routes.measurment_path(id), method: :delete do
         div class: "controls" do
-          submit "Delete"
+          submit "Delete", class: "btn btn-danger"
         end
       end
     end

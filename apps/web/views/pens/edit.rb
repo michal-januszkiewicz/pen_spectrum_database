@@ -21,7 +21,7 @@ module Web::Views::Pens
         end
 
         div class: "controls" do
-          submit "Update", class: "btn-success btn-primary btn"
+          submit "Update", class: "btn-success btn"
         end
       end
     end
