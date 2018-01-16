@@ -9,8 +9,12 @@ module Web::Controllers::Measurments
     end
 
     def call(params)
-      Services::Import.call(import_params) if params.valid?
-      redirect_to "/measurments"
+      if params.valid?
+        Services::Import.call(import_params)
+        redirect_to "/measurments"
+      else
+        self.status = 422
+      end
     end
 
     private

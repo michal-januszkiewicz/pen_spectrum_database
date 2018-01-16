@@ -21,6 +21,19 @@ module Web::Views::Measurments
       form_layout(routes.measurment_path(id), "Update", :patch, values: values)
     end
 
+    def import_form
+      form_for :measurment, "/measurments/import", enctype: "multipart/form-data" do
+        div class: "form-group" do
+          label      :file
+          file_field :file, class: "form-control"
+        end
+
+        div class: "controls" do
+          submit "Import", class: "btn btn-success"
+        end
+      end
+    end
+
     def destroy_measurment_form(id)
       form_for :measurments, routes.measurment_path(id), method: :delete do
         div class: "controls" do
