@@ -1,6 +1,7 @@
 module Web::Views::Measurments
-  class New
+  class Create
     include Web::View
     include FormHelper
+    template "measurments/new"
   end
 end

@@ -1,6 +1,7 @@
 module Web::Views::MeasurmentDevices
-  class Edit
+  class Create
     include Web::View
     include FormHelper
+    template "measurment_devices/new"
   end
 end

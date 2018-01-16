@@ -12,8 +12,12 @@ module Web::Controllers::Pens
     end
 
     def call(params)
-      PenRepository.new.update(params[:id], params[:pen])
-      redirect_to "/pens"
+      if params.valid?
+        PenRepository.new.update(params[:id], params[:pen])
+        redirect_to "/pens"
+      else
+        self.status = 422
+      end
     end
   end
 end

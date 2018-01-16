@@ -1,0 +1,6 @@
+- unless params.valid?
+  .errors class="alert alert-danger"
+    h4 There was a problem with your submission
+    ul
+      - params.error_messages.each do |message|
+        li= message

@@ -11,8 +11,10 @@ module Web::Controllers::MeasurmentDevices
     def call(params)
       if params.valid?
         MeasurmentDeviceRepository.new.create(params[:measurment_device])
+        redirect_to "/measurment_devices"
+      else
+        self.status = 422
       end
-      redirect_to "/measurment_devices"
     end
   end
 end

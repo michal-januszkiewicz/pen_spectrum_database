@@ -11,8 +11,12 @@ module Web::Controllers::Pens
     end
 
     def call(params)
-      PenRepository.new.create(params[:pen]) if params.valid?
-      redirect_to "/pens"
+      if params.valid?
+        PenRepository.new.create(params[:pen])
+        redirect_to "/pens"
+      else
+        self.status = 422
+      end
     end
   end
 end

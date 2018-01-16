@@ -2,6 +2,8 @@ module Web::Controllers::Measurments
   class Create
     include Web::Action
 
+    # expose :error_messages
+
     params do
       required(:measurment).schema do
         required(:name).maybe(size?: 2..100)
@@ -14,8 +16,12 @@ module Web::Controllers::Measurments
     end
 
     def call(params)
-      MeasurmentRepository.new.create(measurment_params) if params.valid?
-      redirect_to "/measurments"
+      if params.valid?
+        MeasurmentRepository.new.create(measurment_params)
+        redirect_to "/measurments"
+      else
+        self.status = 422
+      end
     end
 
     private

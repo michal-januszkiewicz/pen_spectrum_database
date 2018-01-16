@@ -14,8 +14,12 @@ module Web::Controllers::Measurments
     end
 
     def call(params)
-      MeasurmentRepository.new.update(params[:id], measurment_params)
-      redirect_to "/measurments"
+      if params.valid?
+        MeasurmentRepository.new.update(params[:id], measurment_params)
+        redirect_to "/measurments"
+      else
+        self.status = 422
+      end
     end
 
     private
