@@ -27,7 +27,7 @@ module Web::Views::Pens
 
     # rubocop:disable Metrics/MethodLength
     def edit_pen_form(id)
-      form_for :pen, routes.pen_path(id), method: :patch, values: { pen: pen(id) } do
+      form_for :pen, routes.pen_path(id), method: :patch, values: { pen: fetch_pen(id) } do
         div class: "form-group" do
           label      :name
           text_field :name, class: "form-control"
@@ -50,18 +50,18 @@ module Web::Views::Pens
     end
     # rubocop:enable Metrics/MethodLength
 
-    private
-
-    def pen(id)
-      PenRepository.new.find_by_id(id: id)
-    end
-
     def destroy_pen_form(id)
       form_for :pens, routes.pen_path(id), method: :delete do
         div class: "controls" do
           submit "Delete", class: "btn btn-danger"
         end
       end
+    end
+
+    private
+
+    def fetch_pen(id)
+      PenRepository.new.find_by_id(id: id)
     end
   end
 end

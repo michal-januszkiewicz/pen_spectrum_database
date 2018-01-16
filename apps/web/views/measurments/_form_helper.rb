@@ -58,7 +58,7 @@ module Web::Views::Measurments
     # rubocop:disable Metrics/MethodLength
     def edit_measurment_form(id)
       form_for :measurment, routes.measurment_path(id),
-               method: :patch, values: { measurment: measurment(id) } do
+               method: :patch, values: { measurment: fetch_measurment(id) } do
 
         div class: "form-group" do
           label      :name
@@ -108,7 +108,7 @@ module Web::Views::Measurments
 
     private
 
-    def measurment(id)
+    def fetch_measurment(id)
       MeasurmentRepository.new.find_by_id(id: id)
     end
   end

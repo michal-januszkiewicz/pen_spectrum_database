@@ -15,7 +15,7 @@ module Web::Views::MeasurmentDevices
 
     def edit_device_form(id)
       form_for :measurment_device, routes.measurment_device_path(id),
-               method: :patch, values: { measurment_device: measurment_device(id) } do
+               method: :patch, values: { measurment_device: fetch_measurment_device(id) } do
 
         div class: "form-group" do
           label      :name
@@ -30,7 +30,7 @@ module Web::Views::MeasurmentDevices
 
     private
 
-    def measurment_device(id)
+    def fetch_measurment_device(id)
       MeasurmentDeviceRepository.new.find_by_id(id: id)
     end
   end
