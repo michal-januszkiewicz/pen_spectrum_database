@@ -8,6 +8,7 @@ module Web::Controllers::Measurments
         required(:name).maybe(size?: 2..100)
         required(:type).maybe(size?: 2..100)
         required(:pen_id).filled
+        required(:measurment_device_id).filled
         required(:comments).maybe(size?: 2..500)
         required(:spectrum).filled
       end
