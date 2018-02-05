@@ -2,7 +2,6 @@ module Web::Views::Measurments
   class Index
     include Web::View
     include FormHelper
-    include Chartkick::Helper
 
     def filters
       form_for :measurment, routes.measurments_path, class: "form-inline", method: :get do

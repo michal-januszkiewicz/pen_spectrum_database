@@ -27,7 +27,11 @@
     p.col-md-2
       = measurment.date
 
-  = spectrum_chart(measurment.spectrum)
+  .div id="spectrum" hidden="true"
+    = measurment.spectrum
+
+  script src="/assets/chart.js"
+  div id="chartContainer" style="height: 300px; width: 100%;"
 
   .row
     p.col-md-11
