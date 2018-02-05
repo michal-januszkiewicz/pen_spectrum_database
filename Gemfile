@@ -14,8 +14,6 @@ gem "slim"
 gem "omniauth"
 gem "omniauth-auth0"
 
-gem "chartkick"
-
 group :development do
   # Code reloading
   # See: http://hanamirb.org/guides/projects/code-reloading
