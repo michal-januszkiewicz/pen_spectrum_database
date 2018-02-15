@@ -22,6 +22,12 @@ class MeasurmentRepository < Hanami::Repository
       .one
   end
 
+  def spectrums_only
+    measurments
+      .select(:id, :spectrum)
+  end
+
+  # TODO: Refactor
   # rubocop:disable Security/Eval
   def all_with_pens_and_devices(pen_id: nil, device_id: nil)
     query = "aggregate(:pen, :measurment_device)"
@@ -45,5 +51,35 @@ class MeasurmentRepository < Hanami::Repository
   def by_pen(pen_id)
     return "" unless pen_id
     ".where(pen_id: pen_id)"
+  end
+
+  def find_similar(id:, range: [0, 10_000]) # rubocop:disable Metrics/AbcSize
+    measurments = spectrums_only.to_a
+    main = measurments.find { |x| x.id == id }
+    measurments.delete_if { |x| x.id == id }
+    main_points = select_points_of_interest(main.spectrum, range)
+    similarities_array = create_similarities_array(measurments, main_points, range)
+    similarities_array.sort! { |p1, p2| p1[1] <=> p2[1] }
+    similarities_array[0..4]
+  end
+
+  private
+
+  def select_points_of_interest(spectrum, range)
+    spectrum.select do |point|
+      point[0].to_f > range[0].to_f && point[0].to_f < range[1].to_f
+    end
+  end
+
+  def create_similarities_array(measurments, main_points, range) # rubocop:disable Metrics/AbcSize
+    measurments.each_with_object([]) do |measurment, array|
+      points_of_interest = select_points_of_interest(measurment.spectrum, range)
+      sum = 0
+      points_of_interest.each_with_index do |point, index|
+        sum += (point[1].to_i - main_points[index][1].to_i).abs
+      end
+      standard_deviation = sum.zero? ? 1000 : (sum / main_points.size)
+      array.push([measurment.id, standard_deviation])
+    end
   end
 end
