@@ -10,6 +10,12 @@ class MeasurmentRepository < Hanami::Repository
       .one
   end
 
+  def by_ids(ids:)
+    aggregate(:pen, :measurment_device)
+      .where(id: ids)
+      .to_a
+  end
+
   def find_by_type_for_pen(type:, pen_id:)
     measurments
       .where(type: type, pen_id: pen_id)
@@ -60,7 +66,8 @@ class MeasurmentRepository < Hanami::Repository
     main_points = select_points_of_interest(main.spectrum, range)
     similarities_array = create_similarities_array(measurments, main_points, range)
     similarities_array.sort! { |p1, p2| p1[1] <=> p2[1] }
-    similarities_array[0..4]
+    ids = similarities_array[0..2].transpose[0]
+    by_ids(ids: ids)
   end
 
   private
@@ -71,15 +78,19 @@ class MeasurmentRepository < Hanami::Repository
     end
   end
 
-  def create_similarities_array(measurments, main_points, range) # rubocop:disable Metrics/AbcSize
+  def create_similarities_array(measurments, main_points, range)
     measurments.each_with_object([]) do |measurment, array|
       points_of_interest = select_points_of_interest(measurment.spectrum, range)
-      sum = 0
-      points_of_interest.each_with_index do |point, index|
-        sum += (point[1].to_i - main_points[index][1].to_i).abs
-      end
-      standard_deviation = sum.zero? ? 1000 : (sum / main_points.size)
+      standard_deviation = calculate_standard_deviation(points_of_interest, main_points)
       array.push([measurment.id, standard_deviation])
     end
+  end
+
+  def calculate_standard_deviation(points_of_interest, main_points)
+    sum = 0
+    points_of_interest.each_with_index do |point, index|
+      sum += (point[1].to_i - main_points[index][1].to_i).abs
+    end
+    sum.zero? ? 1000 : (sum / main_points.size)
   end
 end

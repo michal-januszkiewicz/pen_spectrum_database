@@ -10,5 +10,7 @@ resources :measurments do
   collection do
     get "import_form", to: "measurments#import_form"
     post "import", to: "measurments#import"
+
+    get "find_similar", to: "measurments#find_similar"
   end
 end
