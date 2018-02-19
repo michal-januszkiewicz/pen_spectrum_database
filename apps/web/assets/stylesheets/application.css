@@ -1,3 +1,15 @@
 .jumbotron {
   background-color: white;
 }
+
+#find-similar {
+  float: right;
+}
+
+#delete-measurment {
+  float: right;
+}
+
+#similar{
+  list-style-type: none;
+}
