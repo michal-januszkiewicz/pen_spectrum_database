@@ -9,7 +9,7 @@ $(function() {
   renderChart(chartData);
 
   $("#find-similar").click(function() {
-    $.get("find_similar", { id: measurment_id }, function(data) {
+    $.get("find_similar", { id: measurment_id, range: getRange() }, function(data) {
       measurments = JSON.parse(data)
       similarList.html("");
       addMeasurmentsToChartData(measurments);
@@ -43,5 +43,11 @@ $(function() {
     return $('<li class="similar-spectrum" data-index=' + (index + 1) + '>'
       + '<label><input type="checkbox" checked=true /> ' + text + '</label>'
       + '</li>');
-  }
+  };
+
+  function getRange() {
+    let from = $("#range-from").val();
+    let to = $("#range-to").val();
+    return [from, to];
+  };
 });

@@ -34,12 +34,26 @@ script src="/assets/measurment.js"
     = measurment.spectrum
 
   .row
-    .col-md-6
+    .col-md-8
     .col-md-4
-      ul id="similar"
-    .col-md-2
-      div id="find-similar" class="btn btn-success" data-id=measurment.id
-        | Find Similar
+      .range.input-group.multi-control-group
+        span.input-group-addon
+          | Range
+        span.input-group-addon
+          | from:
+        input id="range-from" class="form-control" type="number"
+        span.input-group-addon
+          | to:
+        input id="range-to" class="form-control" type="number"
+        span.input-group-btn
+          button id="find-similar" class="btn btn-success" data-id=measurment.id
+            | Find Similar
+
+  br
+  .row
+    .col-md-8
+    .col-md-4
+      ul.pull-left id="similar"
 
   br
   .row
