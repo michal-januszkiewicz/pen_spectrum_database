@@ -2,9 +2,9 @@ $(function() {
   let measurment_id = $("#find-similar").attr("data-id");
   let similarList = $("#similar")
   let spectrum = JSON.parse($('#spectrum')[0].innerHTML);
-  let chartData = [];
+  let mainSpectrum = chartSeries(spectrum);
+  let chartData = [mainSpectrum];
   let originalchartData = [];
-  chartData.push(chartSeries(spectrum));
 
   renderChart(chartData);
 
@@ -28,6 +28,8 @@ $(function() {
   });
 
   function addMeasurmentsToChartData(measurments) {
+    chartData = [mainSpectrum];
+    originalchartData = [];
     measurments.forEach(function(measurment, i) {
       similarList.append(
         listItem(
