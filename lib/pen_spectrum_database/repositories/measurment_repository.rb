@@ -91,6 +91,6 @@ class MeasurmentRepository < Hanami::Repository
     points_of_interest.each_with_index do |point, index|
       sum += (point[1].to_i - main_points[index][1].to_i).abs
     end
-    sum.zero? ? 1000 : (sum / main_points.size)
+    sum / main_points.size
   end
 end

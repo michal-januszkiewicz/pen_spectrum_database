@@ -50,6 +50,8 @@ $(function() {
   function getRange() {
     let from = $("#range-from").val();
     let to = $("#range-to").val();
+    from = from === "" ? 0 : from;
+    to = to === "" ? 10000 : to;
     return [from, to];
   };
 });
