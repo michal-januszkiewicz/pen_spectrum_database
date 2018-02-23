@@ -13,7 +13,7 @@ module UseCases
       end
 
       def call
-        return @pen.to_h if @pen
+        return @pen if @pen
         pen_repository.create(@params)
       end
     end

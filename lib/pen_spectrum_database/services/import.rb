@@ -17,7 +17,7 @@ module Services
 
     def call
       pen = Services::ImportPen.call(@pen_name)
-      Services::ImportMeasurment.call(pen[:id], @measurment_type, @file, @separator)
+      Services::ImportMeasurment.call(pen.id, @measurment_type, @file, @separator)
     end
 
     private
