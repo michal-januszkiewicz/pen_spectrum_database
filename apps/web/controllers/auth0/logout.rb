@@ -11,7 +11,7 @@ module Web::Controllers::Auth0
       domain = ENV["AUTH0_DOMAIN"]
       client_id = ENV["AUTH0_CLIENT_ID"]
       request_params = {
-        returnTo: Web.routes.url(:root),
+        returnTo: ENV["APP_URL"] || Web.routes.url(:root),
         client_id: client_id,
       }
 
