@@ -5,8 +5,6 @@ br
 #measurments
   .row
     h4.col-md-2
-      b= "Name"
-    h4.col-md-2
       b= "Pen"
     h4.col-md-2
       b= "Device"
@@ -18,8 +16,6 @@ br
   - measurments.each do |measurment|
     .measurment
       .row
-        p.col-md-2
-          = measurment.name
         p.col-md-2
           =  measurment.pen&.name
         p.col-md-2
