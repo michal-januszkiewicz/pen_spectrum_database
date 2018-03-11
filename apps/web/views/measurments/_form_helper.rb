@@ -78,8 +78,14 @@ module Web::Views::Measurments
           text_area  :spectrum, class: "form-control", rows: 15, style: "max-width: 20%"
         end
 
-        div class: "controls" do
-          submit action, class: "btn btn-success"
+        div class: "group-controls" do
+          div class: "form-group" do
+            submit action, class: "btn-success btn"
+          end
+
+          div class: "form-group cancel" do
+            link_to "Cancel", routes.measurments_path, class: "btn-danger btn"
+          end
         end
       end
     end

@@ -1,7 +1,6 @@
 $(function() {
   $(".btn-danger").on("click", function(event, options) {
     options = options || {};
-    console.log(options)
     if ( !options.delete ) {
       event.preventDefault();
       bootbox.confirm({
@@ -17,15 +16,15 @@ $(function() {
             }
         },
         callback: function(result) {
+          console.log(event)
           if(result) {
-            console.log(event);
-            $(event.currentTarget).trigger("click", {"delete": true });
+            $(event.currentTarget).trigger("click", {"delete": true })  ;
           }
         }
       });
     }
     else {
-      // Default behaviour.
+      window.location.href = $(this)[0].href;
     }
   });
 });

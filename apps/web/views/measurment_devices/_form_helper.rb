@@ -20,8 +20,14 @@ module Web::Views::MeasurmentDevices
           text_field :name, class: "form-control"
         end
 
-        div class: "controls" do
-          submit action, class: "btn-success btn"
+        div class: "group-controls" do
+          div class: "form-group" do
+            submit action, class: "btn-success btn"
+          end
+
+          div class: "form-group cancel" do
+            link_to "Cancel", routes.measurment_devices_path, class: "btn-danger btn"
+          end
         end
       end
     end
