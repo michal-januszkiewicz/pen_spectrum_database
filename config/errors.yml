@@ -1,0 +1,3 @@
+en:
+  errors:
+    json_array?: 'Spectrum must a json array, e.g. [["390,335830", "204"], ["391,240730", "153"]]'

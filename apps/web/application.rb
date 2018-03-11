@@ -1,6 +1,7 @@
 require "hanami/helpers"
 require "hanami/assets"
 require_relative "./controllers/authentication"
+Dir["#{Hanami.root}/lib/validation/**/*.rb"].each { |f| require f }
 
 module Web
   class Application < Hanami::Application

@@ -1,19 +1,7 @@
 module Web::Controllers::Measurments
   class Create
     include Web::Action
-
-    # expose :error_messages
-
-    params do
-      required(:measurment).schema do
-        required(:name).maybe(size?: 2..100)
-        required(:type).maybe(size?: 2..100)
-        required(:pen_id).filled
-        required(:measurment_device_id).maybe
-        required(:comments).maybe(size?: 2..500)
-        required(:spectrum).filled
-      end
-    end
+    params Validation::Forms::Measurment::Create
 
     def call(params)
       if params.valid?
