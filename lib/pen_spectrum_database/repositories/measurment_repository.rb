@@ -39,15 +39,11 @@ class MeasurmentRepository < Hanami::Repository
     query = "aggregate(:pen, :measurment_device)"
     query << by_device(device_id)
     query << by_pen(pen_id)
+    query << ".order { created_at.desc }"
     query << ".to_a"
     eval(query)
   end
   # rubocop:enable Security/Eval
-
-  def query_builder
-    query = ""
-    query
-  end
 
   def by_device(device_id)
     return "" unless device_id
