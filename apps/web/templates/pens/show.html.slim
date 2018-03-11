@@ -1,6 +1,9 @@
 .pen
   .row
     .col-md-2
+      = link_to(raw("<i class='glyphicon glyphicon-arrow-left'></i> Back"), routes.pens_path, class: "btn-info btn")
+  .row
+    .col-md-2
       h2= "#{pen.name}"
   .row
     br
