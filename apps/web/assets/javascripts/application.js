@@ -16,7 +16,6 @@ $(function() {
             }
         },
         callback: function(result) {
-          console.log(event)
           if(result) {
             $(event.currentTarget).trigger("click", {"delete": true })  ;
           }

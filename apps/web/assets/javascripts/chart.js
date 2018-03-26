@@ -3,6 +3,15 @@ function renderChart(chartData) {
     zoomEnabled: true,
     title: { text: "Spectrum" },
     axisY: { includeZero: false },
+    toolTip: {
+  		shared: true
+  	},
+    legend: {
+  		cursor: "pointer",
+  		verticalAlign: "top",
+  		horizontalAlign: "center",
+  		dockInsidePlotArea: true,
+  	},
     data: chartData
   });
 
@@ -18,9 +27,14 @@ function mapSpectrum(spectrum) {
   });
 };
 
-function chartSeries(spectrum) {
+function chartSeries(measurment) {
   return {
     type: "line",
-    dataPoints: mapSpectrum(spectrum),
+    name: getName(measurment),
+    dataPoints: mapSpectrum(measurment.spectrum),
   }
+};
+
+function getName(measurment) {
+  return `${measurment.pen_name || ""} | ${measurment.device_name || ""} | ${measurment.type}`
 };

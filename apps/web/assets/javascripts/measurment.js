@@ -1,8 +1,8 @@
 $(function() {
   let measurment_id = $("#find-similar").attr("data-id");
   let similarList = $("#similar")
-  let spectrum = JSON.parse($('#spectrum')[0].innerHTML);
-  let mainSpectrum = chartSeries(spectrum);
+  let currentMeasurment = JSON.parse($('#current-measurment')[0].innerHTML);
+  let mainSpectrum = chartSeries(currentMeasurment);
   let chartData = [mainSpectrum];
   let originalchartData = [];
 
@@ -36,7 +36,7 @@ $(function() {
           i, measurment.pen_name + " | " + measurment.device_name + " | " + measurment.type
         )
       );
-      chartData.push(chartSeries(measurment.spectrum));
+      chartData.push(chartSeries(measurment));
       originalchartData.push(mapSpectrum(measurment.spectrum));
     });
   };
