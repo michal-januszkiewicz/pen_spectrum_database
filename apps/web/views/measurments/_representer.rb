@@ -9,7 +9,6 @@ module Web::Views::Measurments
     def base
       {
         id: id,
-        pen_name: pen_name,
         device_name: device_name,
         type: type,
         sample: sample,
@@ -21,10 +20,6 @@ module Web::Views::Measurments
 
     def id
       measurment[:id] || ""
-    end
-
-    def pen_name
-      measurment.dig(:pen, :name) || ""
     end
 
     def device_name

@@ -37,18 +37,13 @@ module Web::Views::Measurments
     def form_layout(path, action, method, values: {})
       form_for :measurment, path, method: method, values: values do
         div class: "form-group" do
-          label      :name
-          text_field :name, class: "form-control"
-        end
-
-        div class: "form-group" do
           label      :type
           select     :type, types, class: "form-control"
         end
 
         div class: "form-group" do
-          label      :sample
-          text_field :sample, class: "form-control"
+          label        :sample
+          number_field :sample, class: "form-control"
         end
 
         div class: "form-group" do
@@ -64,6 +59,11 @@ module Web::Views::Measurments
         div class: "form-group" do
           label       :device
           select      :measurment_device_id, devices, class: "form-control"
+        end
+
+        div class: "form-group" do
+          label       :date
+          date_field  :date, class: "form-control"
         end
 
         div class: "form-group" do
