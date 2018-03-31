@@ -1,17 +1,5 @@
 module Web::Views::Measurments
   module FormHelper
-    def pens
-      PenRepository.new.all.each_with_object({}) do |pen, hash|
-        hash[pen.name] = pen.id
-      end
-    end
-
-    def devices
-      MeasurmentDeviceRepository.new.all.each_with_object({}) do |device, hash|
-        hash[device.name] = device.id
-      end
-    end
-
     def measurment_form
       form_layout(routes.measurments_path, "Create", :post)
     end
@@ -55,7 +43,7 @@ module Web::Views::Measurments
 
         div class: "form-group" do
           label      :type
-          text_field :type, class: "form-control"
+          select     :type, types, class: "form-control"
         end
 
         div class: "form-group" do
@@ -96,6 +84,24 @@ module Web::Views::Measurments
     end
     # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/MethodLength
+
+    def types
+      %w[raw reflective].each_with_object({}) do |type, hash|
+        hash[type] = type
+      end
+    end
+
+    def pens
+      PenRepository.new.all.each_with_object({}) do |pen, hash|
+        hash[pen.name] = pen.id
+      end
+    end
+
+    def devices
+      MeasurmentDeviceRepository.new.all.each_with_object({}) do |device, hash|
+        hash[device.name] = device.id
+      end
+    end
 
     def fetch_measurment(id)
       MeasurmentRepository.new.find_by_id(id: id)
