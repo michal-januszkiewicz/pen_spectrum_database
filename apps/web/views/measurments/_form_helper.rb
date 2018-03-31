@@ -9,11 +9,26 @@ module Web::Views::Measurments
       form_layout(routes.measurment_path(id), "Update", :patch, values: values)
     end
 
-    def import_form
+    def import_form # rubocop:disable Metrics/MethodLength, Metrics/AbcSize:
       form_for :measurment, "/measurments/import", enctype: "multipart/form-data" do
         div class: "form-group" do
           label      :file
           file_field :file, class: "form-control"
+        end
+
+        div class: "form-group" do
+          label       :comments
+          text_field  :comments, class: "form-control"
+        end
+
+        div class: "form-group" do
+          label       :device
+          select      :measurment_device_id, devices, class: "form-control"
+        end
+
+        div class: "form-group" do
+          label       :date
+          date_field  :date, class: "form-control"
         end
 
         div class: "controls" do
@@ -104,7 +119,9 @@ module Web::Views::Measurments
     end
 
     def fetch_measurment(id)
-      MeasurmentRepository.new.find_by_id(id: id)
+      measurment = MeasurmentRepository.new.find_by_id(id: id).to_h
+      measurment[:date] = measurment[:date]&.to_date&.to_s || ""
+      measurment
     end
   end
 end

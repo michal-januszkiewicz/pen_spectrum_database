@@ -13,6 +13,7 @@ module Web::Views::Measurments
         type: type,
         sample: sample,
         spectrum: spectrum,
+        date: date,
       }
     end
 
@@ -36,6 +37,10 @@ module Web::Views::Measurments
 
     def spectrum
       measurment[:spectrum] || []
+    end
+
+    def date
+      measurment[:date]&.to_date || ""
     end
   end
 end
