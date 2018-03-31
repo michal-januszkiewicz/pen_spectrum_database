@@ -17,7 +17,9 @@ module Services
 
     def call
       pen = Services::ImportPen.call(@pen_name)
-      Services::ImportMeasurment.call(pen.id, @measurment_type, @file, @separator)
+      Services::ImportMeasurment.call(
+        pen.id, @measurment_type, @measurment_sample, @file, @separator
+      )
     end
 
     private
@@ -27,7 +29,7 @@ module Services
       filename = File.basename(@filename, ext)
       data = filename.split("(")
       @pen_name = data[0].strip
-      @measurment_type = data[1].chomp(")")
+      @measurment_sample, @measurment_type = data[1].chomp(")").split(" ")
     end
   end
 end

@@ -36,6 +36,7 @@ Hanami::Model.migration do
       column :id, :uuid, default: Sequel.function(:uuid_generate_v4), primary_key: true
       column :name, String
       column :type, String
+      column :sample, Integer
       column :date, DateTime
       column :params, String
       column :spectrum, 'Text[]', null: false

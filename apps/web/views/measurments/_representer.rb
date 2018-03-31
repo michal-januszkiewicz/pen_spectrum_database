@@ -8,12 +8,39 @@ module Web::Views::Measurments
 
     def base
       {
-        id: measurment[:id] || "",
-        pen_name: measurment.dig(:pen, :name) || "",
-        device_name: measurment.dig(:measurment_device, :name) || "",
-        type: measurment[:type] || "",
-        spectrum: measurment[:spectrum] || [],
+        id: id,
+        pen_name: pen_name,
+        device_name: device_name,
+        type: type,
+        sample: sample,
+        spectrum: spectrum,
       }
+    end
+
+    private
+
+    def id
+      measurment[:id] || ""
+    end
+
+    def pen_name
+      measurment.dig(:pen, :name) || ""
+    end
+
+    def device_name
+      measurment.dig(:measurment_device, :name) || ""
+    end
+
+    def type
+      measurment[:type] || ""
+    end
+
+    def sample
+      measurment[:sample] || ""
+    end
+
+    def spectrum
+      measurment[:spectrum] || []
     end
   end
 end

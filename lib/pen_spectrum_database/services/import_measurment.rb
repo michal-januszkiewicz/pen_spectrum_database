@@ -3,13 +3,14 @@ require "tempfile"
 
 module Services
   class ImportMeasurment
-    def self.call(pen_id, type, filepath, separator)
-      new(pen_id, type, filepath, separator).call
+    def self.call(pen_id, type, sample, filepath, separator)
+      new(pen_id, type, sample, filepath, separator).call
     end
 
-    def initialize(pen_id, type, filepath, separator)
+    def initialize(pen_id, type, sample, filepath, separator)
       @pen_id = pen_id
       @type = type
+      @sample = sample
       @filepath = filepath
       @separator = separator
       @spectrum = []
@@ -27,6 +28,7 @@ module Services
         pen_id: @pen_id,
         spectrum: @spectrum,
         type: @type,
+        sample: @sample,
       }
     end
 

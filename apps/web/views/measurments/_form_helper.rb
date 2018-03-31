@@ -59,6 +59,11 @@ module Web::Views::Measurments
         end
 
         div class: "form-group" do
+          label      :sample
+          text_field :sample, class: "form-control"
+        end
+
+        div class: "form-group" do
           label       :comments
           text_field  :comments, class: "form-control"
         end
