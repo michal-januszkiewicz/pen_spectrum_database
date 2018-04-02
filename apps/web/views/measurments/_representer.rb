@@ -10,6 +10,7 @@ module Web::Views::Measurments
       {
         id: id,
         device_name: device_name,
+        pen_name: pen_name,
         type: type,
         sample: sample,
         spectrum: spectrum,
@@ -25,6 +26,10 @@ module Web::Views::Measurments
 
     def device_name
       measurment.dig(:measurment_device, :name) || ""
+    end
+
+    def pen_name
+      measurment.dig(:pen, :name) || ""
     end
 
     def type

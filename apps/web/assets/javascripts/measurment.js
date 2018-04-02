@@ -12,6 +12,7 @@ $(function() {
     $.get("find_similar", { id: measurment_id, range: getRange() }, function(data) {
       measurments = JSON.parse(data)
       similarList.html("");
+      console.log(measurments);
       addMeasurmentsToChartData(measurments);
       renderChart(chartData);
     });
@@ -42,9 +43,11 @@ $(function() {
   };
 
   function listItem(index, text) {
-    return $('<li class="similar-spectrum" data-index=' + (index + 1) + '>'
-      + '<label><input type="checkbox" checked=true /> ' + text + '</label>'
-      + '</li>');
+    return $(
+      `<li class="similar-spectrum" data-index=${index + 1}>
+        <label><input type="checkbox" checked=true /> ${index + 1}. ${text}</label>
+      </li>`
+    );
   };
 
   function getRange() {
