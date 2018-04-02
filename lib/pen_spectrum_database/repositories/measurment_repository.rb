@@ -28,9 +28,11 @@ class MeasurmentRepository < Hanami::Repository
       .one
   end
 
-  def spectrums_only
+  def spectrums_by_type(type:)
     measurments
       .select(:id, :spectrum)
+      .where(type: type)
+      .to_a
   end
 
   # TODO: Refactor
@@ -56,8 +58,8 @@ class MeasurmentRepository < Hanami::Repository
   end
 
   def find_similar(id:, range: [0, 10_000]) # rubocop:disable Metrics/AbcSize
-    measurments = spectrums_only.to_a
-    main = measurments.find { |x| x.id == id }
+    main = find_by_id(id: id)
+    measurments = spectrums_by_type(type: main.type)
     measurments.delete_if { |x| x.id == id }
     main_points = select_points_of_interest(main.spectrum, range)
     similarities_array = create_similarities_array(measurments, main_points, range)
