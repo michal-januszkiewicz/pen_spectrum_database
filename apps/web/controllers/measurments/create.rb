@@ -16,8 +16,13 @@ module Web::Controllers::Measurments
 
     def measurment_params
       params[:measurment][:date] = parse_date(params[:measurment][:date])
-      params[:measurment][:spectrum] = JSON.parse(params[:measurment][:spectrum])
+      params[:measurment][:spectrum] = parse_spectrum
       params[:measurment]
+    end
+
+    def parse_spectrum
+      rows = params[:measurment][:spectrum].split("\r\n")
+      rows.map! { |row| row.split("\t") }
     end
 
     def parse_date(date)

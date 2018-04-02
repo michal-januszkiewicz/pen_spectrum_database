@@ -13,8 +13,8 @@ module Validation
             required(:pen_id).filled
             required(:measurment_device_id).maybe
             required(:comments).maybe(size?: 2..500)
-            required(:spectrum).filled(:json_array?)
-            required(:date).filled
+            required(:spectrum).filled
+            required(:date).maybe
           end
         end
       end
