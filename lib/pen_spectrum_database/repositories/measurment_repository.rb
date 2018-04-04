@@ -64,8 +64,8 @@ class MeasurmentRepository < Hanami::Repository
     main_points = select_points_of_interest(main.spectrum, range)
     similarities_array = create_similarities_array(measurments, main_points, range)
     similarities_array.sort! { |p1, p2| p1[1] <=> p2[1] }
-    ids = similarities_array[0..2].transpose[0]
-    by_ids(ids: ids)
+    ids = similarities_array[0..4].transpose[0]
+    by_ids(ids: ids).sort_by { |x| ids.index x.id }
   end
 
   private
