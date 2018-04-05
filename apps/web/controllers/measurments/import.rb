@@ -34,7 +34,7 @@ module Web::Controllers::Measurments
       {
         measurment_device_id: params[:measurment][:measurment_device_id],
         comments: params[:measurment][:comments],
-        date: Date.parse(params[:measurment][:date]),
+        date: params[:measurment][:date] ? Date.parse(params[:measurment][:date]) : nil,
       }
     end
   end
