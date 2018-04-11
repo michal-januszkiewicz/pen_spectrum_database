@@ -12,8 +12,14 @@ $(function() {
     $.get("find_similar", { id: measurment_id, range: getRange() }, function(data) {
       measurments = JSON.parse(data)
       similarList.html("");
-      addMeasurmentsToChartData(measurments);
-      renderChart(chartData);
+      if (measurments.length === 0) {
+        similarList.html(
+          '<p style="color: red;">No similar measurments found for current type</p>'
+        );
+      } else {
+        addMeasurmentsToChartData(measurments);
+        renderChart(chartData);
+      }
     });
   });
 
