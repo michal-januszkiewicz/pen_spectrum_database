@@ -12,7 +12,6 @@ $(function() {
     $.get("find_similar", { id: measurment_id, range: getRange() }, function(data) {
       measurments = JSON.parse(data)
       similarList.html("");
-      console.log(measurments);
       addMeasurmentsToChartData(measurments);
       renderChart(chartData);
     });

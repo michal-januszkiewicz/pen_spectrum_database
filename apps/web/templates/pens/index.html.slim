@@ -21,8 +21,9 @@ br
             = pen.color
           p.col-md-5
             = pen.comments
-          .col-md-2.btn-group
+          .col-md-1
               = link_to("Show", routes.pen_path(pen.id), class: "btn btn-success btn")
+          .col-md-1
               = link_to("Edit", routes.edit_pen_path(pen.id), class: "btn btn-success btn")
           .col-md-1
             = destroy_pen_form(pen.id)
