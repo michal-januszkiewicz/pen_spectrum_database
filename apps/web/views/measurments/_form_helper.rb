@@ -51,27 +51,27 @@ module Web::Views::Measurments
     # rubocop:disable Metrics/MethodLength
     def form_layout(path, action, method, values: {})
       form_for :measurment, path, method: method, values: values do
-        div class: "form-group" do
+        div class: "form-group required" do
           label      :type
           select     :type, types, class: "form-control"
         end
 
-        div class: "form-group" do
+        div class: "form-group required" do
           label        :sample
           number_field :sample, class: "form-control"
         end
 
         div class: "form-group" do
           label       :comments
-          text_field  :comments, class: "form-control"
+          text_area   :comments, class: "form-control"
         end
 
-        div class: "form-group" do
+        div class: "form-group required" do
           label       :pen
           select      :pen_id, pens, class: "form-control"
         end
 
-        div class: "form-group" do
+        div class: "form-group required" do
           label       :device
           select      :measurment_device_id, devices, class: "form-control"
         end
@@ -81,7 +81,7 @@ module Web::Views::Measurments
           date_field  :date, class: "form-control"
         end
 
-        div class: "form-group" do
+        div class: "form-group required" do
           label      :spectrum
           text_area  :spectrum, class: "form-control", rows: 15, style: "max-width: 20%",
                                 placeholder: <<~EXAMPLE
