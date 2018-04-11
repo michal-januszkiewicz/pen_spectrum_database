@@ -1,5 +1,5 @@
 module Web::Views::Measurments
-  module FormHelper
+  module FormHelper # rubocop:disable Metrics/ModuleLength
     def measurment_form
       form_layout(routes.measurments_path, "Create", :post)
     end
@@ -9,7 +9,7 @@ module Web::Views::Measurments
       form_layout(routes.measurment_path(id), "Update", :patch, values: values)
     end
 
-    def import_form # rubocop:disable Metrics/MethodLength, Metrics/AbcSize:
+    def import_form # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
       form_for :measurment, "/measurments/import", enctype: "multipart/form-data" do
         div class: "form-group" do
           label      :file
@@ -83,7 +83,11 @@ module Web::Views::Measurments
 
         div class: "form-group" do
           label      :spectrum
-          text_area  :spectrum, class: "form-control", rows: 15, style: "max-width: 20%"
+          text_area  :spectrum, class: "form-control", rows: 15, style: "max-width: 20%",
+                                placeholder: <<~EXAMPLE
+                                  Copy & paste from excel, e.g.\n
+                                  390,335830\t3\n391,240730\t3\n392,147230\t4
+                                EXAMPLE
         end
 
         div class: "group-controls" do
