@@ -39,7 +39,8 @@ $(function() {
     measurments.forEach(function(measurment, i) {
       similarList.append(
         listItem(
-          i, measurment.pen_name + " | " + measurment.device_name + " | " + measurment.type
+          i, measurment.pen_name + " | " + measurment.device_name + " | " + measurment.type +
+            " | " + measurment.date;
         )
       );
       chartData.push(chartSeries(measurment));
