@@ -94,7 +94,7 @@ module Web
           ENV["AUTH0_DOMAIN"],
           callback_path: "/auth/oauth2/callback",
           authorize_params: {
-            scope: "openid profile",
+            scope: "openid profile email",
             audience: "#{ENV["AUTH0_DOMAIN_URL"]}/userinfo",
           },
         )

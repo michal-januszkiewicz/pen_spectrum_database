@@ -6,12 +6,16 @@ br
   .row
     h4.col-md-2
       b= "Pen"
-    h4.col-md-2
+    h4.col-md-1
       b= "Device"
-    h4.col-md-2
+    h4.col-md-1
       b= "Type"
-    h4.col-md-2
+    h4.col-md-1
       b= "Sample"
+    h4.col-md-1
+      b= "Date"
+    h4.col-md-2
+      b= "User"
     h4.col-md-3
       b= "Actions"
   br
@@ -20,12 +24,16 @@ br
       .row
         p.col-md-2
           =  measurment.pen&.name
-        p.col-md-2
+        p.col-md-1
           =  measurment.measurment_device&.name
-        p.col-md-2
+        p.col-md-1
           = measurment.type
-        p.col-md-2
+        p.col-md-1
           = measurment.sample
+        p.col-md-1
+          = measurment.date&.to_date
+        p.col-md-2
+          = measurment.user&.name
         p.col-md-1
           = link_to("Show", routes.measurment_path(measurment.id), class: "btn btn-success")
         p.col-md-1

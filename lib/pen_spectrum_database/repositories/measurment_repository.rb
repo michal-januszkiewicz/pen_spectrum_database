@@ -2,6 +2,7 @@ class MeasurmentRepository < Hanami::Repository
   associations do
     belongs_to :pen
     belongs_to :measurment_device
+    belongs_to :user
   end
 
   def find_by_id(id:)
@@ -22,8 +23,8 @@ class MeasurmentRepository < Hanami::Repository
       .one
   end
 
-  def one_with_pen_and_device(id:)
-    aggregate(:pen, :measurment_device)
+  def one_with_pen_device_and_user(id:)
+    aggregate(:pen, :measurment_device, :user)
       .where(id: id)
       .one
   end
@@ -37,10 +38,11 @@ class MeasurmentRepository < Hanami::Repository
 
   # TODO: Refactor
   # rubocop:disable Security/Eval
-  def all_with_pens_and_devices(pen_id: nil, device_id: nil)
-    query = "aggregate(:pen, :measurment_device)"
+  def all_with_pens_and_devices(pen_id: nil, device_id: nil, user_id: nil)
+    query = "aggregate(:pen, :measurment_device, :user)"
     query << by_device(device_id)
     query << by_pen(pen_id)
+    query << by_user(user_id)
     query << ".order { created_at.desc }"
     query << ".to_a"
     eval(query)
@@ -55,6 +57,11 @@ class MeasurmentRepository < Hanami::Repository
   def by_pen(pen_id)
     return "" unless pen_id
     ".where(pen_id: pen_id)"
+  end
+
+  def by_user(user_id)
+    return "" unless user_id
+    ".where(user_id: user_id)"
   end
 
   def find_similar(id:, range: [0, 10_000]) # rubocop:disable Metrics/AbcSize

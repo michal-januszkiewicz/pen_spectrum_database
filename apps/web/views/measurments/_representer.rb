@@ -15,6 +15,7 @@ module Web::Views::Measurments
         sample: sample,
         spectrum: spectrum,
         date: date,
+        user_name: user_name,
       }
     end
 
@@ -46,6 +47,10 @@ module Web::Views::Measurments
 
     def date
       measurment[:date]&.to_date || ""
+    end
+
+    def user_name
+      measurment.dig(:user, :name) || ""
     end
   end
 end

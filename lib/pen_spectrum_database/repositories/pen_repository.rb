@@ -5,7 +5,7 @@ class PenRepository < Hanami::Repository
 
   def all
     pens
-      .order { name.asc }
+      .order { created_at.desc }
       .to_a
   end
 

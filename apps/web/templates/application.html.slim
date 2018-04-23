@@ -31,7 +31,8 @@ html
             a href="/measurments" Measurments
         ul class="nav navbar-nav navbar-right"
           li
-            a href="/logout" Logout
+            a href="/logout"
+              = "Logout #{current_user.email}"
   body
     .col-md-2
     .col-md-8

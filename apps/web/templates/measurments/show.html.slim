@@ -36,6 +36,11 @@ script src="/assets/measurment.js"
       = "Date:"
     p.col-md-2
       = measurment[:date]
+  .row
+    p.col-md-2
+      = "User:"
+    p.col-md-2
+      = measurment[:user_name]
 
   div id="current-measurment" hidden="true"
     = measurment.to_h.to_json
