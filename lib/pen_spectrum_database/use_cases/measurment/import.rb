@@ -19,8 +19,8 @@ module UseCases
       private
 
       def type_exists?
-        measurment_repository.find_by_type_for_pen(
-          type: @params[:type], pen_id: @params[:pen_id],
+        measurment_repository.find_by_type_and_sample_for_pen(
+          type: @params[:type], sample: @params[:sample], pen_id: @params[:pen_id],
         )
       end
     end

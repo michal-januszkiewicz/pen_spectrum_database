@@ -24,6 +24,7 @@ group :test, :development do
   gem "dotenv", "~> 2.0"
   gem "pry"
   gem "rubocop"
+  gem "get_process_mem"
 end
 
 group :test do

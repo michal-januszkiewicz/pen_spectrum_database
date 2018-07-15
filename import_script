@@ -1,0 +1,1 @@
+Dir.glob('/home/michal/mgr/dane/New Folder/*.csv') { |file| t = Tempfile.new; t << File.new(file).read; t.rewind; Services::Import.call(file, t, {}) }

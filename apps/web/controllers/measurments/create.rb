@@ -15,8 +15,6 @@ module Web::Controllers::Measurments
     private
 
     def measurment_params
-      # params[:measurment][:date] = parse_date(params[:measurment][:date])
-      # params[:measurment][:spectrum] = parse_spectrum
       params[:measurment].merge(
         date: parse_date(params[:measurment][:date]),
         spectrum: parse_spectrum,

@@ -4,15 +4,8 @@ module Web::Controllers::Measurments
 
     expose :measurments
 
-    params do
-      required(:measurment).schema do
-        required(:pen_id).filled
-        required(:device_id).filled
-      end
-    end
-
     def call(_params)
-      @measurments = MeasurmentRepository.new.all_with_pens_and_devices(filters)
+      @measurments = MeasurmentRepository.new.all(filters)
     end
 
     private

@@ -6,8 +6,8 @@ $(function() {
   const measurment_id = $("#find-similar").attr("data-id");
   const currentMeasurment = JSON.parse($('#current-measurment')[0].innerHTML);
   const mainSpectrum = chartSeries(currentMeasurment);
-  let similarList = $("#similar")
   let chartData = [mainSpectrum];
+  let similarList = $("#similar")
   let originalchartData = [];
 
   renderChart(chartData);
@@ -63,7 +63,7 @@ $(function() {
   function listItem(index, measurment) {
     const checked = index < checkedMeasurmentsNumber ? true : false;
     const checkedString = checked ? "checked=true" : "";
-    let text = listItemText(measurment);
+    let text = getName(measurment);
     return $(
       `<li class="similar-spectrum" data-index=${index + 1}>
         <label><input type="checkbox" ${checkedString} /> ${index + 1}. ${text}</label>
@@ -75,12 +75,6 @@ $(function() {
     originalchartData.push(mapSpectrum(measurment.spectrum));
     if (index >= checkedMeasurmentsNumber) measurment.spectrum = [];
     chartData.push(chartSeries(measurment));
-  };
-
-  function listItemText(measurment) {
-    return `
-      ${measurment.pen_name} | ${measurment.device_name} | ${measurment.type} | ${measurment.date}
-    `
   };
 
   function getRange() {

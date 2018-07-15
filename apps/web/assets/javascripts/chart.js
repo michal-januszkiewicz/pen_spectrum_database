@@ -36,5 +36,10 @@ function chartSeries(measurment) {
 };
 
 function getName(measurment) {
-  return `${measurment.pen_name || ""} | ${measurment.sample} ${measurment.type}`
+  return `
+    ${measurment.pen_name}
+      | ${measurment.device_name}
+      | ${measurment.sample} ${measurment.type}
+      | ${measurment.date}
+  `
 };

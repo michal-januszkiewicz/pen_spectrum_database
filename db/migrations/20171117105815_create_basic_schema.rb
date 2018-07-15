@@ -44,10 +44,13 @@ Hanami::Model.migration do
       column :updated_at, DateTime, null: false, default: Time.now
 
       foreign_key :user_id, :users, type: :uuid, on_delete: :set_null
-      foreign_key :measurment_device_id, :measurment_devices, type: :uuid, on_delete: :cascade#, null: false
       foreign_key :pen_id, :pens, type: :uuid, null: false, on_delete: :cascade
+      foreign_key :measurment_device_id, :measurment_devices, type: :uuid, on_delete: :cascade
 
-      index [:pen_id, :type], unique: true
+      index :user_id
+      index :measurment_device_id
+      index :pen_id
+      index [:pen_id, :measurment_device_id, :type, :sample], unique: true
     end
   end
 
